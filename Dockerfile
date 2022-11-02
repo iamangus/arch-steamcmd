@@ -6,7 +6,7 @@ RUN \
   # update
   pacman -Syyu --noconfirm && \
   # install packages
-  pacman -S --noconfirm git vi xorg-server-xvfb sudo base-devel && \
+  pacman -S --noconfirm glibc lib32-glibc git vi xorg-server-xvfb sudo base-devel && \
   # create steam user
   useradd -m steam  && \
   # remove password
