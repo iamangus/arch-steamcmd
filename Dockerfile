@@ -8,11 +8,11 @@ RUN \
   # install packages
   pacman -S --noconfirm glibc lib32-glibc git vi xorg-server-xvfb sudo base-devel && \
   # create steam group
-  groupadd -r -g 1000 steam
+  groupadd -r -g 1000 steam && \
   # create steam user
-  useradd -r -m -u 1000 -g 1000 steam  && \
+  useradd -r -m -u 1000 -g 1000 steam && \
   # remove password
-  passwd -d steam  && \
+  passwd -d steam && \
   # add steam user to wheel
   usermod -aG wheel steam && \
   # wheel stuff
