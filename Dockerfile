@@ -1,5 +1,5 @@
 FROM archlinux
-#bump
+
 RUN \
   # Enable multilib
   printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist">> /etc/pacman.conf && \
@@ -7,8 +7,10 @@ RUN \
   pacman -Syyu --noconfirm && \
   # install packages
   pacman -S --noconfirm glibc lib32-glibc git vi xorg-server-xvfb sudo base-devel && \
+  # create steam group
+  groupadd -r -g 1000 steam
   # create steam user
-  useradd -m steam  && \
+  useradd -r -m -u 1000 -g 1000 steam  && \
   # remove password
   passwd -d steam  && \
   # add steam user to wheel
@@ -16,7 +18,7 @@ RUN \
   # wheel stuff
   echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
 
-USER 1000
+USER steam
 ENV USER=steam
 WORKDIR /home/steam
 
