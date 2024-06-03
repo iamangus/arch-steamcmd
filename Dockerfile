@@ -6,7 +6,7 @@ RUN \
   # update
   pacman -Syyu --noconfirm && \
   # install packages
-  pacman -S --noconfirm glibc lib32-glibc git vi xorg-server-xvfb sudo base-devel wine lib32-gnutils && \
+  pacman -S --noconfirm glibc lib32-glibc git vi xorg-server-xvfb sudo base-devel wine-staging lib32-gnutls wine-mono && \
   # create steam group
   groupadd -r -g 1000 steam && \
   # create steam user
