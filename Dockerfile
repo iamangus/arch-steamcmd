@@ -6,7 +6,7 @@ RUN \
   # update
   pacman -Syyu --noconfirm && \
   # install packages
-  pacman -S --noconfirm glibc lib32-glibc git vi xorg-server-xvfb sudo base-devel && \
+  pacman -S --noconfirm glibc lib32-glibc git vi xorg-server-xvfb sudo base-devel wine-stable && \
   # create steam group
   groupadd -r -g 1000 steam && \
   # create steam user
@@ -19,7 +19,6 @@ RUN \
   echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
 
 USER steam
-ENV USER=steam
 WORKDIR /home/steam
 
 RUN \
