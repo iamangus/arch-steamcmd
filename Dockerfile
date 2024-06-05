@@ -29,4 +29,4 @@ RUN \
   #initial steamcmd configuration
   steamcmd +quit
 
-ENTRYPOINT tail -f /etc/hosts
+ENTRYPOINT bash ~/entrypoint.sh
