@@ -35,6 +35,8 @@ RUN \
   #initial steamcmd configuration
   steamcmd +quit
 
+WORKDIR ${STEAM_PATH}
+
 RUN mkdir -p compatibilitytools.d/
 RUN wget -O - \
     https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${PROTON_VERSION}/${PROTON_VERSION}.tar.gz \
