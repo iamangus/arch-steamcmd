@@ -1,6 +1,6 @@
 FROM archlinux
 
-RUN echo "1453256234523" >> /etc/machine-id
+RUN echo "74fed3a18c874ab1911a4459ae4131b6" >> /etc/machine-id
 
 ENV STEAM_HOME="/home/steam" \
     STEAM_USER="steam" \
@@ -36,12 +36,10 @@ RUN \
   #initial steamcmd configuration
   steamcmd +quit
 
-WORKDIR ${STEAM_PATH}
-
-RUN mkdir -p compatibilitytools.d/
+RUN mkdir -p ${STEAM_PATH}/compatibilitytools.d/
 RUN wget -O - \
     https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${PROTON_VERSION}/${PROTON_VERSION}.tar.gz \
-    | tar -xz -C compatibilitytools.d/
+    | tar -xz -C ${STEAM_PATH}/compatibilitytools.d/
 
 RUN chown -R ${USER}:${USER} ${STEAM_HOME}
 
