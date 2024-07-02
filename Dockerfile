@@ -1,12 +1,11 @@
 FROM archlinux
 
-COPY --from=tianon/gosu /gosu /usr/local/bin/
+RUN echo "1453256234523" >> /etc/machine-id
 
 ENV STEAM_HOME="/home/steam" \
     STEAM_USER="steam" \
     STEAM_PATH="/home/steam/.steam/steam" \
     PROTON_VERSION=GE-Proton9-5
-
 
 RUN \
   # Enable multilib
