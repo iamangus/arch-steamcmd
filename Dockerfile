@@ -1,12 +1,5 @@
 FROM archlinux
 
-RUN echo "74fed3a18c874ab1911a4459ae4131b6" >> /etc/machine-id
-
-ENV STEAM_HOME="/home/steam" \
-    STEAM_USER="steam" \
-    STEAM_PATH="/home/steam/.steam/steam" \
-    PROTON_VERSION=GE-Proton9-5
-
 RUN \
   # Enable multilib
   printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist">> /etc/pacman.conf && \
@@ -35,16 +28,5 @@ RUN \
   makepkg -si --noconfirm && \
   #initial steamcmd configuration
   steamcmd +quit
-
-RUN mkdir -p ${STEAM_PATH}/compatibilitytools.d/
-RUN wget -O - \
-    https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${PROTON_VERSION}/${PROTON_VERSION}.tar.gz \
-    | tar -xz -C ${STEAM_PATH}/compatibilitytools.d/
-
-RUN chown -R ${USER}:${USER} ${STEAM_HOME}
-
-# Export Proton paths
-ENV STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_PATH
-ENV PROTON=${STEAM_PATH}/compatibilitytools.d/${PROTON_VERSION}/proton
 
 ENTRYPOINT bash ~/entrypoint.sh
